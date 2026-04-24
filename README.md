@@ -4,6 +4,11 @@ A Go library for comprehensive email address verification **without sending any 
 
 All structured output is defined via Protocol Buffers and serialized with `protojson`, giving you stable, well-typed contracts suitable for both library use and HTTP APIs.
 
+[![CI](https://github.com/shepard-labs/go-mailsafe/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/shepard-labs/go-mailsafe/actions/workflows/ci.yml)
+[![Go Reference](https://pkg.go.dev/badge/github.com/shepard-labs/go-mailsafe.svg)](https://pkg.go.dev/github.com/shepard-labs/go-mailsafe)
+[![Go Report Card](https://goreportcard.com/badge/github.com/shepard-labs/go-mailsafe)](https://goreportcard.com/report/github.com/shepard-labs/go-mailsafe)
+[![license](https://img.shields.io/badge/license-%20%20GNU%20GPLv3%20-green?style=plastic)](https://img.shields.io/badge/license-%20%20GNU%20GPLv3%20-green?style=plastic)
+
 ---
 
 ## Features

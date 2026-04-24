@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package emailverifier.v1;
+
+option go_package = "github.com/shepard-labs/go-mailsafe/proto/v1;emailverifierv1";
+
+// VerifyRequest is the input to the Verify RPC / HTTP handler.
+message VerifyRequest {
+  string email = 1;
+
+  // Options control which optional checks are activated.
+  VerifyOptions options = 2;
+}
+
+message VerifyOptions {
+  // enable_domain_suggest activates typo detection on the domain portion.
+  // Off by default; see D-8.
+  bool enable_domain_suggest = 1;
+
+  // extra_disposable_domains appends caller-supplied domains to the
+  // built-in disposable list. See D-5.
+  repeated string extra_disposable_domains = 2;
+}
+
+// VerifyResponse is the unified result of all enabled checks.
+message VerifyResponse {
+  // The original email address that was verified.
+  string email = 1;
+
+  // Syntax contains the parsed components of the address.
+  Syntax syntax = 2;
+
+  // mx contains DNS MX record information for the domain.
+  MXResult mx = 3;
+
+  // disposable is true when the domain belongs to a known DEA provider.
+  bool disposable = 4;
+
+  // role_account is true when the username is a well-known role address.
+  bool role_account = 5;
+
+  // free is true when the domain is a known free email provider.
+  bool free = 6;
+
+  // suggestion is a typo-corrected domain, populated only when
+  // VerifyOptions.enable_domain_suggest is true and a likely typo is found.
+  // Empty string means no suggestion.
+  string suggestion = 7;
+}
+
+// Syntax holds the parsed components and validity of an email address.
+message Syntax {
+  string username = 1;   // local part before the @
+  string domain   = 2;   // domain part after the @
+  bool   valid    = 3;   // true if the address passes format validation
+}
+
+// MXResult holds the DNS MX lookup outcome for a domain.
+message MXResult {
+  bool              has_mx_record = 1;
+  repeated MXRecord records       = 2;
+}
+
+// MXRecord represents a single DNS MX entry.
+message MXRecord {
+  string host = 1;   // fully-qualified mail host name
+  uint32 pref = 2;   // preference (lower = higher priority)
+}
+
+// LookupError represents a structured error from a DNS lookup failure.
+message LookupError {
+  string message = 1;
+  string details = 2;
+}

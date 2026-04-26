@@ -184,7 +184,7 @@ verifier.IsRoleAccount("postmaster") // true
 verifier.IsRoleAccount("john")      // false
 ```
 
-Recognized role usernames include: `abuse`, `admin`, `billing`, `contact`, `help`, `hostmaster`, `info`, `marketing`, `no-reply`, `noreply`, `office`, `postmaster`, `press`, `root`, `sales`, `security`, `support`, `sysadmin`, `webmaster`, and 880+ more. The list is sourced from [AfterShip's email-verifier](https://github.com/AfterShip/email-verifier).
+Recognized role usernames include: `abuse`, `admin`, `billing`, `contact`, `help`, `hostmaster`, `info`, `marketing`, `no-reply`, `noreply`, `office`, `postmaster`, `press`, `root`, `sales`, `security`, `support`, `sysadmin`, `webmaster`, and 880+ more.
 
 ### Domain Typo Suggestions
 
